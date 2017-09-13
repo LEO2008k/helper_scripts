@@ -1,0 +1,6 @@
+#!/bin/bash
+
+MYDB=userdatass
+if ! mysql -u leo@localhost -p 123456QWEasd -e '$MYDB'; then
+  echo "DB -  $MYDB do not exist
+fi
