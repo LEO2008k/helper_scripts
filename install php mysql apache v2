@@ -1,0 +1,4 @@
+#!/bin/bash
+if test -f "/usr/bin/yum"; then  echo CentOS && ;yum install httpd php php-mysql mariadb-server -y else echo “not CentOS!!!”  fi
+test -f "/usr/bin/tasksel" && echo UBUNTU && sudo tasksel install lamp-server
+Echo install complite or unknown linux
