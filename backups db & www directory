@@ -1,0 +1,23 @@
+#!/bin/bash
+NULL='/dev/null'
+DIR='/etc/mysql'
+BKP='/home/leo/backups'
+DATE="$(date +%d-%m-%Y)"
+NAME="ns-$DATE.tar.gz"
+COUNT=3
+#
+[[ -e "$DIR" && -e "$BKP" ]] && {
+cd "$BKP" && {
+ [[ ! -e "$NAME" ]] && tar -czf "$NAME" "$DIR" > "$NULL" 2>&1
+ # Clear old copy.
+ ARR=(*.tar.gz)
+ for I in ${ARR[*]}; do
+  # Get file count.
+  FLS="$(ls | wc -w)"
+  [[ $COUNT -gt 0 && $FLS -gt 3 ]] && {
+   let COUNT--
+   rm -f "$I"
+  }
+ done
+}
+}
